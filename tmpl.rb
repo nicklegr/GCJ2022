@@ -96,16 +96,6 @@ cases = readline().to_i
   # write your code here
 
   puts "Case ##{case_index}: #{answer}"
-
-  # progress
-  trigger = 
-    if cases >= 10
-      case_index % (cases / 10) == 0
-    else
-      true
-    end
-
-  if trigger
-    STDERR.puts("case #{case_index} / #{cases}, time: #{Time.now - t_start} s")
-  end
 end
+
+STDERR.puts("time: #{Time.now - t_start} s")
