@@ -116,12 +116,6 @@ def bfs(nodes, q)
 # ppd n
   return if n.nil?
 
-  if n.froms.empty?
-    raise if n.used
-    run_chain(nodes, n)
-    return
-  end
-
   inits = n.froms.select{|e| nodes[e].froms.empty?}.map{|e| nodes[e]}
   inits.sort_by!{|n| n.fac}
   inits.each do |e|
@@ -176,6 +170,14 @@ end
     next if node.used
     q = [find_root(nodes, node)]
     bfs(nodes, q)
+  end
+
+  # alone
+  nodes.each do |node|
+    next if node.used
+    raise if !node.froms.empty?
+    raise if !node.to.nil?
+    $sum += node.fac
   end
 
   puts "Case ##{case_index}: #{$sum}"
