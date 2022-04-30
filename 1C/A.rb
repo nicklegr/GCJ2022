@@ -161,16 +161,37 @@ t_start = Time.now
 
 cases = readline().to_i
 
+# ppd "AA", check("AA")
+# ppd "ABA", check("ABA")
+# ppd "ABBCC", check("ABBCC")
+# ppd "ZZABBCC", check("ZZABBCC")
+# ppd "XZZABBCCX", check("XZZABBCCX")
+# exit
+
 (1 .. cases).each do |case_index|
   n = ri
   arr = rss
-ppd arr
+# ppd arr
+
+  arr1 = []
+  arr2 = []
+  arr.each do |e|
+    c = e[0]
+    if e.scan(/#{c}+/)[0] == e
+      arr1 << e
+    else
+      arr2 << e
+    end
+  end
+ppd arr1, arr2
+  arr = arr1 + arr2
 
   loop do
     s = arr.size
     arr = concat(arr)
     break if arr.size == s
   end
+# ppd arr
 
   ans = arr.join
   ans = "IMPOSSIBLE" if !check(ans)
